@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
@@ -41,6 +43,22 @@ public class IndexController {
         model.addAttribute("post", dto);
 
         return "posts-update";
+    }
+
+    @GetMapping("/posts/excel")
+    public String postsExcel(){
+        return "posts-excel";
+    }
+
+    @RequestMapping(value = "/posts/addExcel")
+    public String postsAddExcel(HttpServletRequest request){
+        try {
+//            postsService.
+        } catch (Exception e) {
+            System.out.println("e::" + e.getMessage());
+            request.setAttribute("result", e.getMessage());
+        }
+        return "posts-excel";
     }
 
 }
